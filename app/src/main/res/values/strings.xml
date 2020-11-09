@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CogeTuCita</string>
+    <string name="image_content_description">Product</string>
 </resources>

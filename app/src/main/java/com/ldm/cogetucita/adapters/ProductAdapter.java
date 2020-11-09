@@ -1,15 +1,22 @@
 package com.ldm.cogetucita.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
+import com.ldm.cogetucita.BuildConfig;
 import com.ldm.cogetucita.MainActivity;
 import com.ldm.cogetucita.R;
 import com.ldm.cogetucita.models.Product;
+
+import java.io.File;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     private MainActivity mainActivity;
@@ -19,16 +26,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView productNameTextView;
+        private ImageView imageView;
+        public TextView nameTextView;
+        public TextView descriptionTextView;
         private Context context;
 
-        public ViewHolder(MainActivity mainActivity,
-                          Context context,
+        public ViewHolder(Context context,
                           View itemView) {
             super(itemView);
 
             // set views
-            productNameTextView = itemView.findViewById(R.id.nameTextView);
+            imageView = itemView.findViewById(R.id.imageView);
+            nameTextView = itemView.findViewById(R.id.nameTextView);
+            descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
 
             // store the context
             this.context = context;
@@ -55,7 +65,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         LayoutInflater layoutInflater = LayoutInflater.from(context);
 
         View productView = layoutInflater.inflate(R.layout.item_product, parent, false);
-        ViewHolder productViewHolder = new ViewHolder(this.mainActivity, context, productView);
+        ViewHolder productViewHolder = new ViewHolder(context, productView);
 
         return productViewHolder;
     }
@@ -65,9 +75,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         // involves populating data into the item through holder
         Product product = mainActivity.getProductList().get(position);
 
-        // set TextView
-        TextView textView = holder.productNameTextView;
-        textView.setText(product.getName());
+        // set ImageView
+        ImageView imageViewImage = holder.imageView;
+
+        int resId = holder.context.getResources().getIdentifier(product.getImage(), "drawable", holder.context.getPackageName());
+        if (resId != 0){
+            imageViewImage.setImageResource(resId);
+        }
+        else{
+            imageViewImage.setImageResource(R.drawable.ic_launcher_background);
+        }
+
+        // set TextViews
+        TextView textViewName = holder.nameTextView;
+        textViewName.setText(product.getName());
+        TextView textViewDescription = holder.descriptionTextView;
+        textViewDescription.setText(product.getDescription());
     }
 
     @Override
