@@ -45,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
         // set RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.addItemDecoration(
-                new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         // set Adapter
         productAdapter = new ProductAdapter(this);
