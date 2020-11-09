@@ -1,13 +1,16 @@
 package com.ldm.cogetucita.models;
 
 public class Product {
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private float price;
     private String image;
 
-    public Product(int id,
+    public Product() {
+    }
+
+    public Product(Integer id,
                    String name,
                    String description,
                    float price,
@@ -19,11 +22,11 @@ public class Product {
         this.image = image;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -6,19 +6,25 @@ public class Appointment {
     private int id;
     private String name;
     private String surname;
+    private String email;
     private Date date;
     private String location;
     private Product product;
 
+    public Appointment() {
+    }
+
     public Appointment(int id,
                        String name,
                        String surname,
+                       String email,
                        Date date,
                        String location,
                        Product product) {
         this.id = id;
         this.name = name;
         this.surname = surname;
+        this.email = email;
         this.date = date;
         this.location = location;
         this.product = product;
@@ -46,6 +52,14 @@ public class Appointment {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Date getDate() {
