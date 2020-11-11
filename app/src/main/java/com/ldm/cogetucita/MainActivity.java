@@ -1,5 +1,8 @@
 package com.ldm.cogetucita;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -64,6 +67,30 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Added example!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.help:
+                Toast.makeText(MainActivity.this, "Selected help!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.about:
+                Toast.makeText(MainActivity.this, "Selected about!", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public List<Product> getProductList() {
