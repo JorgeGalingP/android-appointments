@@ -8,13 +8,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ldm.cogetucita.adapters.ProductAdapter;
 import com.ldm.cogetucita.bbdd.AdminSQLiteOpenHelper;
 import com.ldm.cogetucita.models.Product;
+import com.ldm.cogetucita.repositories.ProductRepository;
 
 import java.util.List;
 
@@ -38,11 +38,11 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         }
 
-        // init Database
-        AdminSQLiteOpenHelper adminSQLiteOpenHelper = new AdminSQLiteOpenHelper(this, "db", null, 1);
+        // init Repositories
+        ProductRepository productRepository = new ProductRepository(this);
 
         // set Products
-        setProductList(adminSQLiteOpenHelper.searchAllProducts(this));
+        setProductList(productRepository.searchAllProducts());
         progressBar.setVisibility(View.GONE);
 
         // set RecyclerView

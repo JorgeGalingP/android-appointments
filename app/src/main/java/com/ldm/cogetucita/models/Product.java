@@ -61,4 +61,11 @@ public class Product {
     public void setImage(String image) {
         this.image = image;
     }
+
+    @Override
+    public String toString() {
+        return "Has seleccionado para registrar el producto " + id +
+                " (" + name + ")" +
+                " con un precio de " + price + "euros.";
+    }
 }
