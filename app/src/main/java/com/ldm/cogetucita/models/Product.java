@@ -64,8 +64,8 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Has seleccionado para registrar el producto " + id +
+        return "Has seleccionado el producto " + id +
                 " (" + name + ")" +
-                " con un precio de " + price + "euros.";
+                " con un precio de " + price + " euros.";
     }
 }

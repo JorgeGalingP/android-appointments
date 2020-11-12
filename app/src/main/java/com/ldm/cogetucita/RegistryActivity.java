@@ -9,7 +9,7 @@ import com.ldm.cogetucita.fragments.DatePickerFragment;
 import com.ldm.cogetucita.models.Product;
 import com.ldm.cogetucita.repositories.ProductRepository;
 
-public class NewAppointmentActivity extends AppCompatActivity {
+public class RegistryActivity extends AppCompatActivity {
     private TextView productTextView;
     private EditText dateEditText;
     private Button registryButton;
@@ -18,6 +18,7 @@ public class NewAppointmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_appointment);
+        setTitle("Registrar una nueva cita");
 
         // init Repositories
         ProductRepository productRepository = new ProductRepository(this);
@@ -39,13 +40,23 @@ public class NewAppointmentActivity extends AppCompatActivity {
                 showDatePickerDialog();
             }
         });
+
+        // set Button
+        registryButton = findViewById(R.id.registryButton);
+        registryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO add registerAppointment from AppointmentRepository
+                Toast.makeText(RegistryActivity.this, "Registry Done!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                // +1 because January is zero
+                // +1 (January is zero)
                 final String selectedDate = day + " / " + (month+1) + " / " + year;
                 dateEditText.setText(selectedDate);
             }

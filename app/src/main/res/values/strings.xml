@@ -4,4 +4,8 @@
     <string name="settings_option_1">Ayuda</string>
     <string name="settings_option_2">Acerca de</string>
     <string name="registry">Registrar</string>
+    <string name="registry_name">Seleccionar nombre…</string>
+    <string name="registry_surname">Seleccionar apellidos…</string>
+    <string name="registry_email">Seleccionar email…</string>
+    <string name="registry_date">Seleccionar fecha de la cita…</string>
 </resources>

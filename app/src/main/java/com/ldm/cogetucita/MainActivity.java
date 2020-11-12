@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ldm.cogetucita.adapters.ProductAdapter;
-import com.ldm.cogetucita.bbdd.AdminSQLiteOpenHelper;
 import com.ldm.cogetucita.models.Product;
 import com.ldm.cogetucita.repositories.ProductRepository;
 
@@ -73,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.settings_menu, menu);
+
         return true;
     }
 

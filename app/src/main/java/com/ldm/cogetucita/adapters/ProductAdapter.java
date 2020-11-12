@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ldm.cogetucita.MainActivity;
-import com.ldm.cogetucita.NewAppointmentActivity;
+import com.ldm.cogetucita.RegistryActivity;
 import com.ldm.cogetucita.R;
 import com.ldm.cogetucita.models.Product;
 
@@ -50,7 +49,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             if (position != RecyclerView.NO_POSITION) {
                 Product product = mainActivity.getProductList().get(position);
 
-                Intent intent = new Intent(mainActivity, NewAppointmentActivity.class);
+                Intent intent = new Intent(mainActivity, RegistryActivity.class);
                 intent.putExtra("id", product.getId().toString()); // product id parameter
 
                 mainActivity.startActivity(intent);
