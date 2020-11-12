@@ -4,6 +4,4 @@
     <string name="settings_option_1">Ayuda</string>
     <string name="settings_option_2">Acerca de</string>
     <string name="registry">Registrar</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
