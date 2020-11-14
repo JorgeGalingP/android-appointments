@@ -37,11 +37,11 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         }
 
-        // init Repositories
+        // init Repository
         ProductRepository productRepository = new ProductRepository(this);
 
         // set Products
-        setProductList(productRepository.searchAllProducts());
+        setProductList(productRepository.findAllProducts());
         progressBar.setVisibility(View.GONE);
 
         // set RecyclerView

@@ -1,37 +1,53 @@
 package com.ldm.cogetucita;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.ldm.cogetucita.fragments.DatePickerFragment;
 import com.ldm.cogetucita.models.Product;
+import com.ldm.cogetucita.repositories.AppointmentRepository;
 import com.ldm.cogetucita.repositories.ProductRepository;
 
 public class RegistryActivity extends AppCompatActivity {
     private TextView productTextView;
+    private EditText nameEditText;
+    private EditText surnameEditText;
+    private EditText emailEditText;
     private EditText dateEditText;
     private Button registryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_appointment);
+        setContentView(R.layout.activity_registry);
         setTitle("Registrar una nueva cita");
 
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         // init Repositories
-        ProductRepository productRepository = new ProductRepository(this);
+        final ProductRepository productRepository = new ProductRepository(this);
+        final AppointmentRepository appointmentRepository = new AppointmentRepository(this);
 
         // get Extras
         Bundle extras = getIntent().getExtras();
-        String id = extras.getString("id");
+        final String id = extras.getString("id");
 
-        Product product = productRepository.findProduct(id);
+        final Product product = productRepository.findProduct(id);
 
         // set Views
         productTextView = findViewById(R.id.productTextView);
         productTextView.setText(product.toString());
+
+        nameEditText = findViewById(R.id.editTextName);
+        surnameEditText = findViewById(R.id.editTextSurname);
+        emailEditText = findViewById(R.id.editTextEmail);
 
         dateEditText = findViewById(R.id.editTextDate);
         dateEditText.setOnClickListener(new View.OnClickListener() {
@@ -46,10 +62,38 @@ public class RegistryActivity extends AppCompatActivity {
         registryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO add registerAppointment from AppointmentRepository
-                Toast.makeText(RegistryActivity.this, "Registry Done!", Toast.LENGTH_SHORT).show();
+                String name = nameEditText.getText().toString();
+                String surname = surnameEditText.getText().toString();
+                String email = emailEditText.getText().toString();
+                String date = dateEditText.getText().toString();
+
+                boolean inserted = appointmentRepository.insertAppointment(product.getId().toString(), name, surname, email, date, "");
+
+                if (inserted) {
+                    Toast.makeText(RegistryActivity.this, "Registrado correctamente.", Toast.LENGTH_SHORT).show();
+                } else{
+                    Toast.makeText(RegistryActivity.this, "Error en los datos.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // go to the main activity
+                Intent intent = new Intent(RegistryActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                startActivity(intent);
+                finish();
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void showDatePickerDialog() {

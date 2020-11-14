@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/editTextName"
             tools:layout_editor_absoluteX="37dp"
             android:autofillHints=""
             android:hint="@string/registry_name"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/editTextSurname"
             tools:layout_editor_absoluteX="0dp"
             android:autofillHints=""
             android:hint="@string/registry_surname"
@@ -47,7 +47,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
+            app:layout_constraintTop_toBottomOf="@+id/editTextName"
             app:layout_constraintVertical_bias="0.0"/>
     <EditText
             android:layout_width="match_parent"
@@ -64,7 +64,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSurname"
             app:layout_constraintVertical_bias="0.0"/>
     <EditText
             android:layout_width="match_parent"

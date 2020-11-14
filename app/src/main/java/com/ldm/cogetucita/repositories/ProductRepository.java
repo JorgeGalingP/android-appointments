@@ -24,7 +24,7 @@ public class ProductRepository {
         Product product = new Product();
 
         if (!id.isEmpty()) {
-            Cursor cursor = bd.rawQuery("SELECT id, name, description, price, image from Product WHERE id = " + id, null);
+            Cursor cursor = bd.rawQuery("SELECT id, name, description, price, image FROM Product WHERE id = " + id, null);
 
             if (cursor.moveToFirst()){
                 product.setId(Integer.parseInt(cursor.getString(0)));
@@ -41,7 +41,7 @@ public class ProductRepository {
         return product;
     }
 
-    public List<Product> searchAllProducts(){
+    public List<Product> findAllProducts(){
         AdminSQLiteOpenHelper adminSQLiteOpenHelper = new AdminSQLiteOpenHelper(context, "db", null, 1);
         SQLiteDatabase bd = adminSQLiteOpenHelper.getWritableDatabase();
 

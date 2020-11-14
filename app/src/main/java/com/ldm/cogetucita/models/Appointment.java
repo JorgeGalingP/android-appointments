@@ -7,7 +7,7 @@ public class Appointment {
     private String name;
     private String surname;
     private String email;
-    private Date date;
+    private String date;
     private String location;
     private Product product;
 
@@ -18,7 +18,7 @@ public class Appointment {
                        String name,
                        String surname,
                        String email,
-                       Date date,
+                       String date,
                        String location,
                        Product product) {
         this.id = id;
@@ -62,11 +62,11 @@ public class Appointment {
         this.email = email;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
