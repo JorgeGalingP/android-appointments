@@ -1,7 +1,5 @@
 package com.ldm.cogetucita.models;
 
-import java.util.Date;
-
 public class Appointment {
     private int id;
     private String name;
@@ -9,6 +7,7 @@ public class Appointment {
     private String email;
     private String date;
     private String location;
+    private State state;
     private Product product;
 
     public Appointment() {
@@ -27,6 +26,7 @@ public class Appointment {
         this.email = email;
         this.date = date;
         this.location = location;
+        this.state = State.PENDING;
         this.product = product;
     }
 
@@ -76,6 +76,14 @@ public class Appointment {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 
     public Product getProduct() {

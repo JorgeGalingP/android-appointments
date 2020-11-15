@@ -10,4 +10,6 @@
     <string name="registry_date">Seleccionar fecha de la cita…</string>
     <string name="registry_message_sucess">Registrado correctamente</string>
     <string name="registry_message_fail">Faltan datos requeridos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

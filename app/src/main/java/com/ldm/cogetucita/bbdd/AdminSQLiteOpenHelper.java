@@ -12,7 +12,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS Product(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, price REAL, image TEXT)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS Appointment(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, surname TEXT, email TEXT, date TEXT, location TEXT, product_id REFERENCES Product(id))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS Appointment(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, surname TEXT, email TEXT, date TEXT, location TEXT, state TEXT, product_id REFERENCES Product(id))");
 
         db.execSQL("INSERT INTO Product(name, description, price, image) VALUES ('Maquillaje', 'El maquillaje es la práctica de decorar la piel y otras partes visibles del cuerpo para resaltarlas o mejorar su aspecto. Tambien designa también los cosméticos que se emplean, tales como los lápices de labios y sombras de ojos.', 25.50, 'makeup')");
         db.execSQL("INSERT INTO Product(name, description, price, image) VALUES ('Manicura', 'Una manicura es un tratamiento de belleza cosmético para las uñas y manos que suele realizarse en casa o en un salón de belleza. En una manicura se cortan o liman los bordes de las uñas, se realizan masajes a las manos y se aplica esmalte de uñas.', 17.50, 'nails')");

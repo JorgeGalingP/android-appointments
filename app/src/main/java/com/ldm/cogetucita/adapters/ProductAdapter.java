@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.ldm.cogetucita.MainActivity;
+import com.ldm.cogetucita.ProductActivity;
 import com.ldm.cogetucita.RegistryActivity;
 import com.ldm.cogetucita.R;
 import com.ldm.cogetucita.models.Product;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
-    private MainActivity mainActivity;
+    private ProductActivity productActivity;
 
-    public ProductAdapter(MainActivity mainActivity){
-        this.mainActivity = mainActivity;
+    public ProductAdapter(ProductActivity productActivity){
+        this.productActivity = productActivity;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -47,12 +47,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             int position = getAdapterPosition();
 
             if (position != RecyclerView.NO_POSITION) {
-                Product product = mainActivity.getProductList().get(position);
+                Product product = productActivity.getProductList().get(position);
 
-                Intent intent = new Intent(mainActivity, RegistryActivity.class);
+                Intent intent = new Intent(productActivity, RegistryActivity.class);
                 intent.putExtra("id", product.getId().toString()); // product id parameter
 
-                mainActivity.startActivity(intent);
+                productActivity.startActivity(intent);
             }
         }
     }
@@ -72,7 +72,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // involves populating data into the item through holder
-        Product product = mainActivity.getProductList().get(position);
+        Product product = productActivity.getProductList().get(position);
 
         // set ImageView
         ImageView imageViewImage = holder.imageView;
@@ -99,6 +99,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return mainActivity.getProductList().size();
+        return productActivity.getProductList().size();
     }
 }

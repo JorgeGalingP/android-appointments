@@ -82,7 +82,7 @@ public class RegistryActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // go to the main activity
-                Intent intent = new Intent(RegistryActivity.this, MainActivity.class);
+                Intent intent = new Intent(RegistryActivity.this, ProductActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 startActivity(intent);
