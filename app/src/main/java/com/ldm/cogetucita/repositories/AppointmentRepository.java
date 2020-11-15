@@ -59,7 +59,7 @@ public class AppointmentRepository {
 
         boolean done = false;
 
-        if (!productId.isEmpty() || !name.isEmpty() || !email.isEmpty()){
+        if (!productId.isEmpty() && !name.isEmpty() && !email.isEmpty() && !date.isEmpty()){
             ContentValues contentValues = new ContentValues();
             contentValues.put("name", name);
             contentValues.put("surname", surname);

@@ -8,4 +8,6 @@
     <string name="registry_surname">Añadir apellidos…</string>
     <string name="registry_email">Añadir email…</string>
     <string name="registry_date">Seleccionar fecha de la cita…</string>
+    <string name="registry_message_sucess">Registrado correctamente</string>
+    <string name="registry_message_fail">Faltan datos requeridos</string>
 </resources>

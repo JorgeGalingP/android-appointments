@@ -38,7 +38,6 @@ public class RegistryActivity extends AppCompatActivity {
         // get Extras
         Bundle extras = getIntent().getExtras();
         final String id = extras.getString("id");
-
         final Product product = productRepository.findProduct(id);
 
         // set Views
@@ -70,9 +69,9 @@ public class RegistryActivity extends AppCompatActivity {
                 boolean inserted = appointmentRepository.insertAppointment(product.getId().toString(), name, surname, email, date, "");
 
                 if (inserted) {
-                    Toast.makeText(RegistryActivity.this, "Registrado correctamente.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistryActivity.this, R.string.registry_message_sucess, Toast.LENGTH_SHORT).show();
                 } else{
-                    Toast.makeText(RegistryActivity.this, "Error en los datos.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistryActivity.this, R.string.registry_message_fail, Toast.LENGTH_SHORT).show();
                 }
             }
         });
