@@ -85,13 +85,15 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
             app:layout_constraintVertical_bias="0.0"/>
     <Button
+            android:id="@+id/registryButton"
             android:text="@string/registry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/registryButton"
+            android:layout_margin="4dp"
             tools:layout_editor_absoluteX="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextDate"
-            app:layout_constraintVertical_bias="0.28"/>
+            app:layout_constraintVertical_bias="0.28" app:backgroundTint="@color/colorGray"
+            android:textColor="#000000"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

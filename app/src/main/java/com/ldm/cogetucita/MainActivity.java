@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -41,17 +43,41 @@ public class MainActivity extends AppCompatActivity {
                     case 1: {
                         tab.setText("Confirmados");
                         tab.setIcon(R.drawable.ic_confirmed);
+
+                        BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
+                        badgeDrawable.setBackgroundColor(
+                                ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary)
+                        );
+                        badgeDrawable.setVisible(true);
+                        badgeDrawable.setNumber(12);
                         break;
                     }
                     case 2: {
                         tab.setText("Terminados");
                         tab.setIcon(R.drawable.ic_done);
+
+                        BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
+                        badgeDrawable.setBackgroundColor(
+                                ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary)
+                        );
+                        badgeDrawable.setVisible(true);
+                        badgeDrawable.setNumber(45);
                         break;
                     }
                 }
             }
         });
         tabLayoutMediator.attach();
+
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+
+                BadgeDrawable badgeDrawable = tabLayout.getTabAt(position).getOrCreateBadge();
+                badgeDrawable.setVisible(false);
+            }
+        });
 
         // set Fab
         FloatingActionButton fab = findViewById(R.id.addFab);
