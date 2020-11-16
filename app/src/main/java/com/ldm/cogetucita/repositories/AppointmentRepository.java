@@ -31,7 +31,7 @@ public class AppointmentRepository {
         String query = "SELECT id, name, surname, email, date, location, state, product_id FROM Appointment";
 
         if (state != null) {
-            query = "SELECT id, name, surname, email, date, location, state, product_id FROM Appointment WHERE state = " + state.name();
+            query += " WHERE state = '" + state.name() + "'";
         }
 
         Cursor cursor = bd.rawQuery(query, null);
