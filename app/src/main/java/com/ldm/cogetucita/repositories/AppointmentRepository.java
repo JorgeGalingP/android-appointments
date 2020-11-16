@@ -53,6 +53,8 @@ public class AppointmentRepository {
                 appointment.setProduct(product);
 
                 appointmentList.add(appointment);
+
+                cursor.moveToNext();
             }
         }
 

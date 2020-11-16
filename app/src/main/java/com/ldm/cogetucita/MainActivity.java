@@ -1,6 +1,7 @@
 package com.ldm.cogetucita;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,9 +12,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.ldm.cogetucita.adapters.AppointmentPagerAdapter;
+import com.ldm.cogetucita.models.Appointment;
+import com.ldm.cogetucita.repositories.AppointmentRepository;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private ViewPager2 viewPager2;
     private TabLayout tabLayout;
 
     @Override
@@ -26,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         }
 
-        viewPager2 = findViewById(R.id.viewPager);
+        ViewPager2 viewPager2 = findViewById(R.id.viewPager);
         viewPager2.setAdapter(new AppointmentPagerAdapter(this));
 
         tabLayout = findViewById(R.id.tabLayout);
