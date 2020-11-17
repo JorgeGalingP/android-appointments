@@ -19,6 +19,7 @@ public class Appointment {
                        String email,
                        String date,
                        String location,
+                       State state,
                        Product product) {
         this.id = id;
         this.name = name;
@@ -26,7 +27,7 @@ public class Appointment {
         this.email = email;
         this.date = date;
         this.location = location;
-        this.state = State.PENDING;
+        this.state = state;
         this.product = product;
     }
 

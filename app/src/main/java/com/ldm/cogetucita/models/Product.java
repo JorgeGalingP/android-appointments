@@ -64,6 +64,10 @@ public class Product {
 
     @Override
     public String toString() {
+        return name + " con precio de " + price + " euros.";
+    }
+
+    public String toMessage() {
         return "Has seleccionado el producto " + id +
                 " (" + name + ")" +
                 " con un precio de " + price + " euros.";

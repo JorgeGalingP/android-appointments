@@ -42,7 +42,7 @@ public class RegistryActivity extends AppCompatActivity {
 
         // set Views
         productTextView = findViewById(R.id.productTextView);
-        productTextView.setText(product.toString());
+        productTextView.setText(product.toMessage());
 
         nameEditText = findViewById(R.id.editTextName);
         surnameEditText = findViewById(R.id.editTextSurname);

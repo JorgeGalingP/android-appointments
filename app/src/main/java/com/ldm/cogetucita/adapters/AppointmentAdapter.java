@@ -21,12 +21,22 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView idTextView;
+        public TextView nameTextView;
+        public TextView surnameTextView;
+        public TextView emailTextView;
+        public TextView dateTextView;
+        public TextView productTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             // set views
             idTextView = itemView.findViewById(R.id.idTextView);
+            nameTextView = itemView.findViewById(R.id.nameTextView);
+            surnameTextView = itemView.findViewById(R.id.surnameTextView);
+            emailTextView = itemView.findViewById(R.id.emailTextView);
+            dateTextView = itemView.findViewById(R.id.dateTextView);
+            productTextView = itemView.findViewById(R.id.productTextView);
 
             // attach a click listener to the entire row view
             itemView.setOnClickListener(this);
@@ -50,9 +60,9 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         Context context = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
 
-        View productView = layoutInflater.inflate(R.layout.item_appointment, parent, false);
+        View appointmentView = layoutInflater.inflate(R.layout.item_appointment, parent, false);
 
-        return new ViewHolder(productView);
+        return new ViewHolder(appointmentView);
     }
 
     @Override
@@ -63,6 +73,22 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         // set TextViews
         TextView textViewId = holder.idTextView;
         textViewId.setText(String.valueOf(appointment.getId()));
+
+        TextView textViewName = holder.nameTextView;
+        textViewName.setText("Nombre: " + appointment.getName());
+
+        TextView textViewSurname = holder.surnameTextView;
+        textViewSurname.setText("Apellidos: " + appointment.getSurname());
+
+        TextView textViewEmail = holder.emailTextView;
+        textViewEmail.setText("Email: " + appointment.getEmail());
+
+        TextView textViewDate = holder.dateTextView;
+        textViewDate.setText("Fecha: " + appointment.getDate());
+
+        TextView textViewProduct = holder.productTextView;
+        textViewProduct.setText("Producto: " + appointment.getProduct().toString());
+
     }
 
     @Override
