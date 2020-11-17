@@ -72,22 +72,22 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
 
         // set TextViews
         TextView textViewId = holder.idTextView;
-        textViewId.setText(String.valueOf(appointment.getId()));
+        textViewId.setText("#" + appointment.getId());
 
         TextView textViewName = holder.nameTextView;
-        textViewName.setText("Nombre: " + appointment.getName());
+        textViewName.setText(appointment.getName());
 
         TextView textViewSurname = holder.surnameTextView;
-        textViewSurname.setText("Apellidos: " + appointment.getSurname());
+        textViewSurname.setText(appointment.getSurname());
 
         TextView textViewEmail = holder.emailTextView;
-        textViewEmail.setText("Email: " + appointment.getEmail());
+        textViewEmail.setText(appointment.getEmail());
 
         TextView textViewDate = holder.dateTextView;
-        textViewDate.setText("Fecha: " + appointment.getDate());
+        textViewDate.setText(appointment.getDate());
 
         TextView textViewProduct = holder.productTextView;
-        textViewProduct.setText("Producto: " + appointment.getProduct().toString());
+        textViewProduct.setText(appointment.getProduct().toString());
 
     }
 
