@@ -2,6 +2,7 @@ package com.ldm.cogetucita;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
@@ -42,7 +43,7 @@ public class RegistryActivity extends AppCompatActivity {
 
         // set Views
         productTextView = findViewById(R.id.productTextView);
-        productTextView.setText(product.toMessage());
+        productTextView.setText(product.toString());
 
         nameEditText = findViewById(R.id.editTextName);
         surnameEditText = findViewById(R.id.editTextSurname);
@@ -73,6 +74,14 @@ public class RegistryActivity extends AppCompatActivity {
                 } else{
                     Toast.makeText(RegistryActivity.this, R.string.registry_message_fail, Toast.LENGTH_SHORT).show();
                 }
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(RegistryActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                }, 2000);
             }
         });
     }

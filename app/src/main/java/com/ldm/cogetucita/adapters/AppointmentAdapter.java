@@ -26,6 +26,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         public TextView emailTextView;
         public TextView dateTextView;
         public TextView productTextView;
+        public TextView priceTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -37,6 +38,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             emailTextView = itemView.findViewById(R.id.emailTextView);
             dateTextView = itemView.findViewById(R.id.dateTextView);
             productTextView = itemView.findViewById(R.id.productTextView);
+            priceTextView = itemView.findViewById(R.id.priceTextView);
 
             // attach a click listener to the entire row view
             itemView.setOnClickListener(this);
@@ -72,7 +74,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
 
         // set TextViews
         TextView textViewId = holder.idTextView;
-        textViewId.setText("#" + appointment.getId());
+        textViewId.setText("ID-" + appointment.getId());
 
         TextView textViewName = holder.nameTextView;
         textViewName.setText(appointment.getName());
@@ -87,8 +89,10 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         textViewDate.setText(appointment.getDate());
 
         TextView textViewProduct = holder.productTextView;
-        textViewProduct.setText(appointment.getProduct().toString());
+        textViewProduct.setText(appointment.getProduct().getName());
 
+        TextView textViewPrice = holder.priceTextView;
+        textViewPrice.setText(appointment.getProduct().getPrice() + " euros");
     }
 
     @Override
