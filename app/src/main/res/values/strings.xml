@@ -4,12 +4,15 @@
     <string name="settings_option_1">Ayuda</string>
     <string name="settings_option_2">Acerca de</string>
     <string name="registry">Registrar</string>
+    <string name="update">Actualizar</string>
     <string name="registry_name">Añadir nombre…</string>
     <string name="registry_surname">Añadir apellidos…</string>
     <string name="registry_email">Añadir email…</string>
     <string name="registry_date">Seleccionar fecha de la cita…</string>
     <string name="registry_message_sucess">Registrado correctamente</string>
     <string name="registry_message_fail">Faltan datos requeridos</string>
+    <string name="update_message_sucess">Actualizado correctamente</string>
+    <string name="update_message_fail">Faltan datos requeridos</string>
     <string name="item_appointment_name">Nombre</string>
     <string name="item_appointment_surname">Apellidos</string>
     <string name="item_appointment_email">Email</string>

@@ -120,7 +120,7 @@ public class AppointmentRepository {
         return done;
     }
 
-    public boolean updateAppointment(String appointmentId, String name, String surname, String email, String date, State state){
+    public boolean updateAppointment(String appointmentId, String name, String surname, String email, String date, String location, State state){
         AdminSQLiteOpenHelper adminSQLiteOpenHelper = new AdminSQLiteOpenHelper(context, "db", null, 1);
         SQLiteDatabase bd = adminSQLiteOpenHelper.getWritableDatabase();
 
@@ -137,6 +137,7 @@ public class AppointmentRepository {
             contentValues.put("surname", surname);
             contentValues.put("email", email);
             contentValues.put("date", date);
+            contentValues.put("location", location);
             contentValues.put("state", state.name());
 
             int nValue = bd.update("Appointment", contentValues, "id=" + appointmentId, null);
