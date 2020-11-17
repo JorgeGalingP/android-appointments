@@ -19,6 +19,37 @@ public class AppointmentRepository {
         this.context = context;
     }
 
+    public Appointment findAppointment(String id){
+        AdminSQLiteOpenHelper adminSQLiteOpenHelper = new AdminSQLiteOpenHelper(context, "db", null, 1);
+        SQLiteDatabase bd = adminSQLiteOpenHelper.getWritableDatabase();
+
+        Appointment appointment = new Appointment();
+
+        if (!id.isEmpty()) {
+            Cursor cursor = bd.rawQuery("SELECT id, name, surname, email, date, location, state, product_id FROM Appointment WHERE id = " + id, null);
+
+            if (cursor.moveToFirst()){
+                String productId = cursor.getString(7);
+                ProductRepository productRepository = new ProductRepository(context);
+                Product product = productRepository.findProduct(productId);
+
+                appointment.setId(Integer.parseInt(cursor.getString(0)));
+                appointment.setName(cursor.getString(1));
+                appointment.setSurname(cursor.getString(2));
+                appointment.setEmail(cursor.getString(3));
+                appointment.setDate(cursor.getString(4));
+                appointment.setLocation(cursor.getString(5));
+                appointment.setState(State.valueOf(cursor.getString(6)));
+                appointment.setProduct(product);
+            }
+
+            cursor.close();
+            bd.close();
+        }
+
+        return appointment;
+    }
+
     public List<Appointment> findAllAppointments(){
         return findAllAppointmentsByState(null);
     }
@@ -84,6 +115,36 @@ public class AppointmentRepository {
             bd.close();
 
             done = true;
+        }
+
+        return done;
+    }
+
+    public boolean updateAppointment(String appointmentId, String name, String surname, String email, String date, State state){
+        AdminSQLiteOpenHelper adminSQLiteOpenHelper = new AdminSQLiteOpenHelper(context, "db", null, 1);
+        SQLiteDatabase bd = adminSQLiteOpenHelper.getWritableDatabase();
+
+        boolean done = false;
+
+        if (!appointmentId.isEmpty()
+                && !name.isEmpty()
+                && !surname.isEmpty()
+                && !email.isEmpty()
+                && !date.isEmpty()
+                && state != null){
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("name", name);
+            contentValues.put("surname", surname);
+            contentValues.put("email", email);
+            contentValues.put("date", date);
+            contentValues.put("state", state.name());
+
+            int nValue = bd.update("Appointment", contentValues, "id=" + appointmentId, null);
+            bd.close();
+
+            if (nValue == 1){
+                done = true;
+            }
         }
 
         return done;

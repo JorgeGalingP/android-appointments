@@ -1,4 +1,4 @@
-package com.ldm.cogetucita;
+package com.ldm.cogetucita.activities;
 
 import android.content.Intent;
 import android.view.Menu;
@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.ldm.cogetucita.R;
 import com.ldm.cogetucita.adapters.ProductAdapter;
 import com.ldm.cogetucita.models.Product;
 import com.ldm.cogetucita.repositories.ProductRepository;

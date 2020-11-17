@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.ldm.cogetucita.ProductActivity;
-import com.ldm.cogetucita.RegistryActivity;
+import com.ldm.cogetucita.activities.ProductActivity;
+import com.ldm.cogetucita.activities.RegistryActivity;
 import com.ldm.cogetucita.R;
 import com.ldm.cogetucita.models.Product;
 

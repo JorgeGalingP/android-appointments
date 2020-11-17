@@ -1,7 +1,6 @@
-package com.ldm.cogetucita;
+package com.ldm.cogetucita.activities;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,11 +10,8 @@ import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.ldm.cogetucita.R;
 import com.ldm.cogetucita.adapters.AppointmentPagerAdapter;
-import com.ldm.cogetucita.models.Appointment;
-import com.ldm.cogetucita.repositories.AppointmentRepository;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;

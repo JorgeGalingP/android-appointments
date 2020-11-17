@@ -1,4 +1,4 @@
-package com.ldm.cogetucita;
+package com.ldm.cogetucita.activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.ldm.cogetucita.R;
 import com.ldm.cogetucita.fragments.DatePickerFragment;
 import com.ldm.cogetucita.models.Product;
 import com.ldm.cogetucita.repositories.AppointmentRepository;
