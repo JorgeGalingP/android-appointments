@@ -67,16 +67,14 @@ public class UpdateActivity extends AppCompatActivity {
 
         // set Spinner
         State appointmentState = appointment.getState();
-        int selection = 0;
-        if (appointmentState == State.CONFIRMED) selection = 1;
-        if (appointmentState == State.DONE) selection = 2;
+        int selection = appointmentState.ordinal();
 
         stateSpinner = findViewById(R.id.stateSpinner);
-        stateSpinner.setSelection(selection); // set default selection to 0
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.state_array, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         stateSpinner.setAdapter(spinnerAdapter);
+        stateSpinner.setSelection(selection);
 
         Button updateButton = findViewById(R.id.updateButton);
         updateButton.setOnClickListener(new View.OnClickListener() {
@@ -87,24 +85,11 @@ public class UpdateActivity extends AppCompatActivity {
                 String email = emailEditText.getText().toString();
                 String date = dateEditText.getText().toString();
                 String location = locationEditText.getText().toString();
-                State selectedState = null;
-                switch ((String) stateSpinner.getSelectedItem()){
-                    case "Pendiente":
-                        selectedState = State.PENDING;
-                        break;
-                    case "Confirmado":
-                        selectedState = State.CONFIRMED;
-                        break;
-                    case "Terminado":
-                        selectedState = State.DONE;
-                        break;
-                    default:
-                        break;
-                }
+                State selectedState = State.values()[stateSpinner.getSelectedItemPosition()];
 
-                boolean inserted = appointmentRepository.updateAppointment(String.valueOf(appointment.getId()), name, surname, email, date, location, selectedState);
+                boolean updated = appointmentRepository.updateAppointment(String.valueOf(appointment.getId()), name, surname, email, date, location, selectedState);
 
-                if (inserted) {
+                if (updated) {
                     Toast.makeText(UpdateActivity.this, R.string.update_message_sucess, Toast.LENGTH_SHORT).show();
 
                     new Handler().postDelayed(new Runnable() {
@@ -113,7 +98,7 @@ public class UpdateActivity extends AppCompatActivity {
                             Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
                             startActivity(intent);
                         }
-                    }, 2000);
+                    }, 1500);
                 } else{
                     Toast.makeText(UpdateActivity.this, R.string.update_message_fail, Toast.LENGTH_SHORT).show();
                 }

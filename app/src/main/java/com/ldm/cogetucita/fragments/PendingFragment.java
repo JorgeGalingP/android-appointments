@@ -20,8 +20,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class PendingFragment extends Fragment {
-    private ProgressBar progressBar;
-
     private List<Appointment> pendingList;
 
     public PendingFragment() {
@@ -36,11 +34,11 @@ public class PendingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pending, container, false);
         Context context = view.getContext();
 
-        progressBar = view.findViewById(R.id.progressBar);
+        ProgressBar progressBar = view.findViewById(R.id.progressBar);
         progressBar.setIndeterminate(true);
         progressBar.setVisibility(View.VISIBLE);
 

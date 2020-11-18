@@ -15,12 +15,10 @@ import com.ldm.cogetucita.repositories.AppointmentRepository;
 import com.ldm.cogetucita.repositories.ProductRepository;
 
 public class RegistryActivity extends AppCompatActivity {
-    private TextView productTextView;
     private EditText nameEditText;
     private EditText surnameEditText;
     private EditText emailEditText;
     private EditText dateEditText;
-    private Button registryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +41,7 @@ public class RegistryActivity extends AppCompatActivity {
         final Product product = productRepository.findProduct(id);
 
         // set Views
-        productTextView = findViewById(R.id.productTextView);
+        TextView productTextView = findViewById(R.id.productTextView);
         productTextView.setText(product.toString());
 
         nameEditText = findViewById(R.id.editTextName);
@@ -59,7 +57,7 @@ public class RegistryActivity extends AppCompatActivity {
         });
 
         // set Button
-        registryButton = findViewById(R.id.registryButton);
+        Button registryButton = findViewById(R.id.registryButton);
         registryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +80,7 @@ public class RegistryActivity extends AppCompatActivity {
                         Intent intent = new Intent(RegistryActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
-                }, 2000);
+                }, 1500);
             }
         });
     }

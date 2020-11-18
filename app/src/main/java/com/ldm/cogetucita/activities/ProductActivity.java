@@ -19,9 +19,6 @@ import com.ldm.cogetucita.repositories.ProductRepository;
 import java.util.List;
 
 public class ProductActivity extends AppCompatActivity {
-    private ProductAdapter productAdapter;
-    private ProgressBar progressBar;
-
     private List<Product> productList;
 
     @Override
@@ -30,7 +27,7 @@ public class ProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product);
         setTitle("Productos");
 
-        progressBar = findViewById(R.id.progressBar);
+        ProgressBar progressBar = findViewById(R.id.progressBar);
         progressBar.setIndeterminate(true);
         progressBar.setVisibility(View.VISIBLE);
 
@@ -51,7 +48,7 @@ public class ProductActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         // set Adapter
-        productAdapter = new ProductAdapter(this);
+        ProductAdapter productAdapter = new ProductAdapter(this);
         recyclerView.setAdapter(productAdapter);
 
         // set LinearLayoutManager

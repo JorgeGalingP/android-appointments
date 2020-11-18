@@ -16,6 +16,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.ldm.cogetucita.R;
 import com.ldm.cogetucita.adapters.AppointmentPagerAdapter;
+import com.ldm.cogetucita.models.State;
+import com.ldm.cogetucita.repositories.AppointmentRepository;
 
 public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
@@ -30,9 +32,14 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         }
 
+        // set repository
+        final AppointmentRepository appointmentRepository = new AppointmentRepository(this);
+
+        // set ViewPager2
         ViewPager2 viewPager2 = findViewById(R.id.viewPager);
         viewPager2.setAdapter(new AppointmentPagerAdapter(this));
 
+        // set TabLayout
         tabLayout = findViewById(R.id.tabLayout);
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(
                 tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
@@ -48,24 +55,32 @@ public class MainActivity extends AppCompatActivity {
                         tab.setText("Confirmados");
                         tab.setIcon(R.drawable.ic_confirmed);
 
-                        BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
-                        badgeDrawable.setBackgroundColor(
-                                ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary)
-                        );
-                        badgeDrawable.setVisible(true);
-                        badgeDrawable.setNumber(12);
+                        int n = appointmentRepository.findAllAppointmentsByState(State.CONFIRMED).size();
+
+                        if (n > 0){
+                            BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
+                            badgeDrawable.setBackgroundColor(
+                                    ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary)
+                            );
+                            badgeDrawable.setVisible(true);
+                            badgeDrawable.setNumber(n);
+                        }
                         break;
                     }
                     case 2: {
                         tab.setText("Terminados");
                         tab.setIcon(R.drawable.ic_done);
 
-                        BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
-                        badgeDrawable.setBackgroundColor(
-                                ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary)
-                        );
-                        badgeDrawable.setVisible(true);
-                        badgeDrawable.setNumber(45);
+                        int n = appointmentRepository.findAllAppointmentsByState(State.DONE).size();
+
+                        if (n > 0){
+                            BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
+                            badgeDrawable.setBackgroundColor(
+                                    ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary)
+                            );
+                            badgeDrawable.setVisible(true);
+                            badgeDrawable.setNumber(n);
+                        }
                         break;
                     }
                 }
@@ -78,8 +93,11 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
 
-                BadgeDrawable badgeDrawable = tabLayout.getTabAt(position).getOrCreateBadge();
-                badgeDrawable.setVisible(false);
+                TabLayout.Tab tab = tabLayout.getTabAt(position);
+                if (tab != null){
+                    BadgeDrawable badgeDrawable = tab.getOrCreateBadge();
+                    badgeDrawable.setVisible(false);
+                }
             }
         });
 
