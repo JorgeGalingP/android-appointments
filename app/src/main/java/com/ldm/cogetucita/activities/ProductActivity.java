@@ -62,37 +62,21 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.settings_menu, menu);
-
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 // go to the main activity
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(ProductActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 startActivity(intent);
                 finish();
 
                 return true;
-            case R.id.help:
-                Toast.makeText(ProductActivity.this, "Selected help!", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.about:
-                Toast.makeText(ProductActivity.this, "Selected about!", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                break;
-        }
 
-        return super.onOptionsItemSelected(item);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public List<Product> getProductList() {
