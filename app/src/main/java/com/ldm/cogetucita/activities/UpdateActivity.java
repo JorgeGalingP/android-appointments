@@ -104,6 +104,28 @@ public class UpdateActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Button deleteButton = findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean deleted = appointmentRepository.deleteAppointment(String.valueOf(appointment.getId()));
+
+                if (deleted) {
+                    Toast.makeText(UpdateActivity.this, R.string.delete_message_sucess, Toast.LENGTH_SHORT).show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                    }, 1500);
+                } else{
+                    Toast.makeText(UpdateActivity.this, R.string.delete_message_fail, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override

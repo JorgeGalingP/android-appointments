@@ -5,6 +5,7 @@
     <string name="settings_option_2">Acerca de</string>
     <string name="registry">Registrar</string>
     <string name="update">Actualizar</string>
+    <string name="delete">Eliminar</string>
     <string name="registry_name">Añadir nombre…</string>
     <string name="registry_surname">Añadir apellidos…</string>
     <string name="registry_email">Añadir email…</string>
@@ -19,6 +20,8 @@
     <string name="update_state">Actualizar el estado…</string>
     <string name="update_message_sucess">Actualizado correctamente</string>
     <string name="update_message_fail">Faltan datos requeridos</string>
+    <string name="delete_message_sucess">Eliminado correctamente</string>
+    <string name="delete_message_fail">No se ha podido eliminar</string>
     <string name="item_appointment_name">Nombre</string>
     <string name="item_appointment_surname">Apellidos</string>
     <string name="item_appointment_email">Email</string>
@@ -27,4 +30,6 @@
     <string name="item_appointment_product">Producto</string>
     <string name="item_appointment_price">Precio</string>
     <string name="item_appointment_state">Estado</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

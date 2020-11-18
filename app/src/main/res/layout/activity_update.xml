@@ -281,4 +281,17 @@
             app:layout_constraintVertical_bias="0.281"
             app:backgroundTint="@color/colorGray"
             android:textColor="#000000"/>
+
+    <Button
+            android:id="@+id/deleteButton"
+            android:text="@string/delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            tools:layout_editor_absoluteX="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/updateButton"
+            app:layout_constraintVertical_bias="0.053"
+            app:backgroundTint="@color/colorGray"
+            android:textColor="#000000"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

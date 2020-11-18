@@ -127,16 +127,22 @@ public class MainActivity extends AppCompatActivity {
         switch (id){
             case android.R.id.home:
                 // go to the main activity
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent homeIntent = new Intent(this, MainActivity.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                startActivity(intent);
+                startActivity(homeIntent);
                 finish();
 
                 return true;
             case R.id.help:
-                Toast.makeText(MainActivity.this, "Selected help!", Toast.LENGTH_SHORT).show();
-                break;
+                // go to the main activity
+                Intent helpIntent = new Intent(this, HelpActivity.class);
+                helpIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                startActivity(helpIntent);
+                finish();
+
+                return true;
             case R.id.about:
                 Toast.makeText(MainActivity.this, "Selected about!", Toast.LENGTH_SHORT).show();
                 break;

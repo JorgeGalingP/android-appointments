@@ -150,4 +150,22 @@ public class AppointmentRepository {
 
         return done;
     }
+
+    public boolean deleteAppointment(String appointmentId){
+        AdminSQLiteOpenHelper adminSQLiteOpenHelper = new AdminSQLiteOpenHelper(context, "db", null, 1);
+        SQLiteDatabase bd = adminSQLiteOpenHelper.getWritableDatabase();
+
+        boolean done = false;
+
+        if (!appointmentId.isEmpty()){
+            int nValue = bd.delete("Appointment", "id=" + appointmentId, null);
+            bd.close();
+
+            if (nValue == 1){
+                done = true;
+            }
+        }
+
+        return done;
+    }
 }

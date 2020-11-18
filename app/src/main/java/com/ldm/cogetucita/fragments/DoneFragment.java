@@ -18,7 +18,6 @@ import com.ldm.cogetucita.repositories.AppointmentRepository;
 import java.util.List;
 
 public class DoneFragment extends Fragment {
-    private ProgressBar progressBar;
 
     private List<Appointment> pendingList;
 
