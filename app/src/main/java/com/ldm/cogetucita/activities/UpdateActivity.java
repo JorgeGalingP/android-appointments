@@ -1,13 +1,11 @@
 package com.ldm.cogetucita.activities;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.ldm.cogetucita.R;
@@ -23,7 +21,7 @@ public class UpdateActivity extends AppCompatActivity {
     private EditText emailEditText;
     private EditText dateEditText;
     private EditText locationEditText;
-    private EditText stateEditText;
+    private Spinner stateSpinner;
     private Button updateButton;
 
     @Override
@@ -46,7 +44,7 @@ public class UpdateActivity extends AppCompatActivity {
 
         final Appointment appointment = appointmentRepository.findAppointment(id);
 
-        // set Views
+        // set EditTexts
         nameEditText = findViewById(R.id.editTextName);
         nameEditText.setText(appointment.getName());
 
@@ -62,8 +60,27 @@ public class UpdateActivity extends AppCompatActivity {
         locationEditText = findViewById(R.id.editTextLocation);
         locationEditText.setText(appointment.getLocation());
 
-        stateEditText = findViewById(R.id.editTextState);
-        stateEditText.setText(appointment.getState().name());
+        // set Spinner
+        State selectedState = null;
+        stateSpinner = findViewById(R.id.stateSpinner);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
+                R.array.state_array, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        stateSpinner.setAdapter(spinnerAdapter);
+        stateSpinner.setSelection(0); // set default selection to 0
+        stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                String[] array = getResources().getStringArray(R.array.state_array);
+
+                Toast.makeText(parent.getContext(), array[pos], Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         updateButton = findViewById(R.id.updateButton);
         updateButton.setOnClickListener(new View.OnClickListener() {
@@ -74,11 +91,22 @@ public class UpdateActivity extends AppCompatActivity {
                 String email = emailEditText.getText().toString();
                 String date = dateEditText.getText().toString();
                 String location = locationEditText.getText().toString();
-                String state = stateEditText.toString();
+                State selectedState = null;
+                switch ((String) stateSpinner.getSelectedItem()){
+                    case "Pendiente":
+                        selectedState = State.PENDING;
+                        break;
+                    case "Confirmado":
+                        selectedState = State.CONFIRMED;
+                        break;
+                    case "Terminado":
+                        selectedState = State.DONE;
+                        break;
+                    default:
+                        break;
+                }
 
-                State stateEnum = Enum.valueOf(State.class, state);
-
-                boolean inserted = appointmentRepository.updateAppointment(String.valueOf(appointment.getId()), name, surname, email, location, date, stateEnum);
+                boolean inserted = appointmentRepository.updateAppointment(String.valueOf(appointment.getId()), name, surname, email, location, date, selectedState);
 
                 if (inserted) {
                     Toast.makeText(UpdateActivity.this, R.string.update_message_sucess, Toast.LENGTH_SHORT).show();

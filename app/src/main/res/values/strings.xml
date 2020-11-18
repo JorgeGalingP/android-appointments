@@ -8,9 +8,15 @@
     <string name="registry_name">Añadir nombre…</string>
     <string name="registry_surname">Añadir apellidos…</string>
     <string name="registry_email">Añadir email…</string>
-    <string name="registry_date">Seleccionar fecha de la cita…</string>
+    <string name="registry_date">Seleccionar la fecha…</string>
     <string name="registry_message_sucess">Registrado correctamente</string>
     <string name="registry_message_fail">Faltan datos requeridos</string>
+    <string name="update_name">Actualizar nombre…</string>
+    <string name="update_surname">Actualizar apellidos…</string>
+    <string name="update_email">Actualizar email…</string>
+    <string name="update_date">Actualizar la fecha…</string>
+    <string name="update_location">Actualizar localización…</string>
+    <string name="update_state">Actualizar el estado…</string>
     <string name="update_message_sucess">Actualizado correctamente</string>
     <string name="update_message_fail">Faltan datos requeridos</string>
     <string name="item_appointment_name">Nombre</string>
