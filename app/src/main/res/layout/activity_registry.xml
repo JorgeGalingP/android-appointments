@@ -18,22 +18,24 @@
             android:layout_marginLeft="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.083"/>
+            app:layout_constraintVertical_bias="0.057"/>
+
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/editTextName"
-            tools:layout_editor_absoluteX="37dp"
+            tools:layout_editor_absoluteX="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
             android:autofillHints=""
             android:hint="@string/registry_name"
             android:singleLine="true"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/productTextView"
-            app:layout_constraintVertical_bias="0.1"/>
+            app:layout_constraintVertical_bias="0.06"/>
+
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,6 +1,6 @@
 package com.ldm.cogetucita.activities;
 
-import android.content.BroadcastReceiver;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -9,11 +9,10 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.ldm.cogetucita.R;
+import com.ldm.cogetucita.fragments.DatePickerFragment;
 import com.ldm.cogetucita.models.Appointment;
-import com.ldm.cogetucita.models.Product;
 import com.ldm.cogetucita.models.State;
 import com.ldm.cogetucita.repositories.AppointmentRepository;
-import com.ldm.cogetucita.repositories.ProductRepository;
 
 public class UpdateActivity extends AppCompatActivity {
     private EditText nameEditText;
@@ -22,7 +21,6 @@ public class UpdateActivity extends AppCompatActivity {
     private EditText dateEditText;
     private EditText locationEditText;
     private Spinner stateSpinner;
-    private Button updateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +40,7 @@ public class UpdateActivity extends AppCompatActivity {
         // init Repositories
         final AppointmentRepository appointmentRepository = new AppointmentRepository(this);
 
+        // get Appointment
         final Appointment appointment = appointmentRepository.findAppointment(id);
 
         // set EditTexts
@@ -56,33 +55,30 @@ public class UpdateActivity extends AppCompatActivity {
 
         dateEditText = findViewById(R.id.editTextDate);
         dateEditText.setText(appointment.getDate());
+        dateEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog();
+            }
+        });
 
         locationEditText = findViewById(R.id.editTextLocation);
         locationEditText.setText(appointment.getLocation());
 
         // set Spinner
-        State selectedState = null;
+        State appointmentState = appointment.getState();
+        int selection = 0;
+        if (appointmentState == State.CONFIRMED) selection = 1;
+        if (appointmentState == State.DONE) selection = 2;
+
         stateSpinner = findViewById(R.id.stateSpinner);
+        stateSpinner.setSelection(selection); // set default selection to 0
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.state_array, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         stateSpinner.setAdapter(spinnerAdapter);
-        stateSpinner.setSelection(0); // set default selection to 0
-        stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                String[] array = getResources().getStringArray(R.array.state_array);
 
-                Toast.makeText(parent.getContext(), array[pos], Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        updateButton = findViewById(R.id.updateButton);
+        Button updateButton = findViewById(R.id.updateButton);
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,21 +102,21 @@ public class UpdateActivity extends AppCompatActivity {
                         break;
                 }
 
-                boolean inserted = appointmentRepository.updateAppointment(String.valueOf(appointment.getId()), name, surname, email, location, date, selectedState);
+                boolean inserted = appointmentRepository.updateAppointment(String.valueOf(appointment.getId()), name, surname, email, date, location, selectedState);
 
                 if (inserted) {
                     Toast.makeText(UpdateActivity.this, R.string.update_message_sucess, Toast.LENGTH_SHORT).show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                    }, 2000);
                 } else{
                     Toast.makeText(UpdateActivity.this, R.string.update_message_fail, Toast.LENGTH_SHORT).show();
                 }
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    }
-                }, 2000);
             }
         });
     }
@@ -141,5 +137,18 @@ public class UpdateActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void showDatePickerDialog() {
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 (January is zero)
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                dateEditText.setText(selectedDate);
+            }
+        });
+
+        newFragment.show(this.getSupportFragmentManager(), "datePicker");
     }
 }

@@ -14,7 +14,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/firstRowIdLayout">
+                android:id="@+id/firstRowItemIdLayout">
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -32,8 +32,8 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/secondRowNameLayout"
-                app:layout_constraintTop_toBottomOf="@+id/firstRowIdLayout">
+                android:id="@+id/secondRowItemNameLayout"
+                app:layout_constraintTop_toBottomOf="@+id/firstRowItemIdLayout">
 
             <TextView
                     android:text="@string/item_appointment_name"
@@ -63,8 +63,8 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/thirdRowNameLayout"
-                app:layout_constraintTop_toBottomOf="@+id/secondRowNameLayout">
+                android:id="@+id/thirdRowItemNameLayout"
+                app:layout_constraintTop_toBottomOf="@+id/secondRowItemNameLayout">
 
             <TextView
                     android:text="@string/item_appointment_surname"
@@ -94,8 +94,8 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/fourthRowNameLayout"
-                app:layout_constraintTop_toBottomOf="@+id/thirdRowNameLayout">
+                android:id="@+id/fourthRowItemNameLayout"
+                app:layout_constraintTop_toBottomOf="@+id/thirdRowItemNameLayout">
 
             <TextView
                     android:text="@string/item_appointment_email"
@@ -125,8 +125,8 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/fifthRowNameLayout"
-                app:layout_constraintTop_toBottomOf="@+id/fourthRowNameLayout">
+                android:id="@+id/fifthRowItemNameLayout"
+                app:layout_constraintTop_toBottomOf="@+id/fourthRowItemNameLayout">
 
             <TextView
                     android:text="@string/item_appointment_date"
@@ -156,8 +156,8 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/sixthRowNameLayout"
-                app:layout_constraintTop_toBottomOf="@+id/fifthRowNameLayout">
+                android:id="@+id/sixthRowItemNameLayout"
+                app:layout_constraintTop_toBottomOf="@+id/fifthRowItemNameLayout">
 
             <TextView
                     android:text="@string/item_appointment_product"
@@ -187,8 +187,8 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/seventhRowNameLayout"
-                app:layout_constraintTop_toBottomOf="@+id/sixthRowNameLayout">
+                android:id="@+id/seventhRowItemNameLayout"
+                app:layout_constraintTop_toBottomOf="@+id/sixthRowItemNameLayout">
 
             <TextView
                     android:text="@string/item_appointment_price"

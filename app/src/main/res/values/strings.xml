@@ -15,7 +15,7 @@
     <string name="update_surname">Actualizar apellidos…</string>
     <string name="update_email">Actualizar email…</string>
     <string name="update_date">Actualizar la fecha…</string>
-    <string name="update_location">Actualizar localización…</string>
+    <string name="update_location">Actualizar lugar…</string>
     <string name="update_state">Actualizar el estado…</string>
     <string name="update_message_sucess">Actualizado correctamente</string>
     <string name="update_message_fail">Faltan datos requeridos</string>
@@ -23,6 +23,8 @@
     <string name="item_appointment_surname">Apellidos</string>
     <string name="item_appointment_email">Email</string>
     <string name="item_appointment_date">Fecha</string>
+    <string name="item_appointment_location">Lugar</string>
     <string name="item_appointment_product">Producto</string>
     <string name="item_appointment_price">Precio</string>
+    <string name="item_appointment_state">Estado</string>
 </resources>
