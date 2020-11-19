@@ -1,6 +1,5 @@
 package com.ldm.cogetucita.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,7 +30,14 @@ public class Help1Fragment extends Fragment {
         imageView.setImageResource(R.drawable.help_1);
 
         TextView textView = view.findViewById(R.id.textView);
-        textView.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
+        textView.setText("Esta es la pantalla principal de la aplicación. " +
+                "En ella podrás navegar por las diferentes pestañas con todas las citas. " +
+                "\n" +
+                "Indicado por la flecha roja, podrás crear una nueva cita." +
+                "\n" +
+                "Indicado por la flecha verde, podrás acceder a las instrucciones de la aplicación." +
+                "\n" +
+                "Indicado por la flecha amarilla, podrás actualizar y eliminar.");
 
         return view;
     }

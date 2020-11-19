@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.ldm.cogetucita.R;
 
-public class Help2Fragment extends Fragment {
+public class Help4Fragment extends Fragment {
 
-    public Help2Fragment() {
+    public Help4Fragment() {
         // Required empty public constructor
     }
 
@@ -24,19 +24,20 @@ public class Help2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_help2, container, false);
+        View view = inflater.inflate(R.layout.fragment_help4, container, false);
 
         ImageView imageView = view.findViewById(R.id.imageView);
-        imageView.setImageResource(R.drawable.help_2);
+        imageView.setImageResource(R.drawable.help_4);
 
         TextView textView = view.findViewById(R.id.textView);
-        textView.setText("Al pulsar cualquier cita (flecha amarilla) navegas a la pantalla de actualización. " +
+        textView.setText("Esta es la pantalla de creción de una nueva cita. " +
+                "En ella podrás crear nuevas citas en estado pendiente. " +
                 "\n" +
-                "En ella podrás actualizar todos los datos de dicha cita: Nombre, Apellidos, Email, Fecha, Lugar y Estado." +
+                "Indicado por la línea verde, aparece el producto seleccionado." +
                 "\n" +
-                "Tambien puedes eliminar la cita." +
+                "Indicado por el círculo rojo, se encuentran los campos." +
                 "\n" +
-                "¡Prueba tú mismo!");
+                "Indicado por el cuadrado amarillo, realizarás el registro.");
 
         return view;
     }

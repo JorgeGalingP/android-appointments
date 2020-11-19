@@ -50,10 +50,6 @@ public class AppointmentRepository {
         return appointment;
     }
 
-    public List<Appointment> findAllAppointments(){
-        return findAllAppointmentsByState(null);
-    }
-
     public List<Appointment> findAllAppointmentsByState(State state){
         AdminSQLiteOpenHelper adminSQLiteOpenHelper = new AdminSQLiteOpenHelper(context, "db", null, 1);
         SQLiteDatabase bd = adminSQLiteOpenHelper.getWritableDatabase();

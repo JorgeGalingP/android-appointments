@@ -5,8 +5,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.Help1Fragment"
-        android:id="@+id/frameLayout">
+        tools:context=".fragments.Help4Fragment"
+        android:id="@+id/frameLayout4">
 
     <ImageView
             android:id="@+id/imageView"

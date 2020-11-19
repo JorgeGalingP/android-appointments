@@ -16,13 +16,17 @@ public class HelpPagerAdapter extends FragmentStateAdapter {
         switch (position){
             case 0:
                 return new Help1Fragment();
-            default:
+            case 1:
                 return new Help2Fragment();
+            case 2:
+                return new Help3Fragment();
+            default:
+                return new Help4Fragment();
         }
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 4;
     }
 }

@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id){
             case android.R.id.home:
-                // go to the main activity
+                // go to main activity
                 Intent homeIntent = new Intent(this, MainActivity.class);
                 homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
             case R.id.help:
-                // go to the main activity
+                // go to help activity
                 Intent helpIntent = new Intent(this, HelpActivity.class);
                 helpIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -143,8 +143,17 @@ public class MainActivity extends AppCompatActivity {
                 finish();
 
                 return true;
+            case R.id.audio:
+                // go to help activity
+                Intent audioIntent = new Intent(this, AudioActivity.class);
+                audioIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                startActivity(audioIntent);
+                finish();
+
+                return true;
             case R.id.about:
-                Toast.makeText(MainActivity.this, "Selected about!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Hecho por Jorge Galindo Peña para la asignatura de Laboratorio de Dispositivos Móviles de la universidad Rey Juan Carlos.", Toast.LENGTH_LONG).show();
                 break;
             default:
                 break;

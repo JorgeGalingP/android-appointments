@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.ldm.cogetucita.R;
 
-public class Help2Fragment extends Fragment {
+public class Help3Fragment extends Fragment {
 
-    public Help2Fragment() {
+    public Help3Fragment() {
         // Required empty public constructor
     }
 
@@ -24,19 +24,17 @@ public class Help2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_help2, container, false);
+        View view = inflater.inflate(R.layout.fragment_help3, container, false);
 
         ImageView imageView = view.findViewById(R.id.imageView);
-        imageView.setImageResource(R.drawable.help_2);
+        imageView.setImageResource(R.drawable.help_3);
 
         TextView textView = view.findViewById(R.id.textView);
-        textView.setText("Al pulsar cualquier cita (flecha amarilla) navegas a la pantalla de actualización. " +
+        textView.setText("Esta es la pantalla de selección de productos. " +
                 "\n" +
-                "En ella podrás actualizar todos los datos de dicha cita: Nombre, Apellidos, Email, Fecha, Lugar y Estado." +
+                "Indicado por el círculo rojo, se muestran todos los posibles productos. " +
                 "\n" +
-                "Tambien puedes eliminar la cita." +
-                "\n" +
-                "¡Prueba tú mismo!");
+                "Al pulsar sobre un producto, podrás crear una nueva cita.");
 
         return view;
     }
