@@ -1,6 +1,8 @@
 package com.ldm.cogetucita.activities;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -21,6 +23,8 @@ public class UpdateActivity extends AppCompatActivity {
     private EditText dateEditText;
     private EditText locationEditText;
     private Spinner stateSpinner;
+
+    private Boolean deleted = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,21 +113,42 @@ public class UpdateActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean deleted = appointmentRepository.deleteAppointment(String.valueOf(appointment.getId()));
+                AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this);
+                builder
+                        .setPositiveButton("Sí, eliminar", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                deleted = appointmentRepository.deleteAppointment(String.valueOf(appointment.getId()));
+                            }
+                        })
+                        .setNegativeButton("No, mantener", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                                deleted = false;
+                            }
+                        })
+                        .setMessage("¿Estás seguro de querer borrar esta cita?")
+                        .setTitle("Eliminar");
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
-                if (deleted) {
-                    Toast.makeText(UpdateActivity.this, R.string.delete_message_sucess, Toast.LENGTH_SHORT).show();
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (deleted) {
+                            Toast.makeText(UpdateActivity.this, R.string.delete_message_sucess, Toast.LENGTH_SHORT).show();
 
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
-                            startActivity(intent);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            }, 1500);
+                        } else {
+                            Toast.makeText(UpdateActivity.this, R.string.delete_message_fail, Toast.LENGTH_SHORT).show();
                         }
-                    }, 1500);
-                } else{
-                    Toast.makeText(UpdateActivity.this, R.string.delete_message_fail, Toast.LENGTH_SHORT).show();
-                }
+                    }
+                });
             }
         });
     }

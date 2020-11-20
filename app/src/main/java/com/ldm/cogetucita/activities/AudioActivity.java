@@ -75,7 +75,7 @@ public class AudioActivity extends AppCompatActivity {
 
     public void recordAudio(View view){
         if (mediaRecorder == null) {
-            File dir = getBaseContext().getFilesDir(); // Environment.getExternalStorageDirectory();
+            File dir = getBaseContext().getFilesDir();
             try {
                 outputAudio = File.createTempFile("audio", ".3gp", dir).getAbsolutePath();
             } catch (IOException e) {
