@@ -124,39 +124,46 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id){
-            case android.R.id.home:
-                // go to main activity
-                Intent homeIntent = new Intent(this, MainActivity.class);
-                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (id == android.R.id.home){
+            // go to main activity
+            Intent homeIntent = new Intent(this, MainActivity.class);
+            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                startActivity(homeIntent);
-                finish();
+            startActivity(homeIntent);
+            finish();
 
-                return true;
-            case R.id.help:
-                // go to help activity
-                Intent helpIntent = new Intent(this, HelpActivity.class);
-                helpIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            return true;
+        } else if (id == R.id.help) {
+            // go to help activity
+            Intent helpIntent = new Intent(this, HelpActivity.class);
+            helpIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                startActivity(helpIntent);
-                finish();
+            startActivity(helpIntent);
+            finish();
 
-                return true;
-            case R.id.audio:
-                // go to help activity
-                Intent audioIntent = new Intent(this, AudioActivity.class);
-                audioIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            return true;
+        } else if (id == R.id.admin) {
+            // go to admin activity
+            Intent adminIntent = new Intent(this, AdminActivity.class);
+            adminIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                startActivity(audioIntent);
-                finish();
+            startActivity(adminIntent);
+            finish();
 
-                return true;
-            case R.id.about:
-                Toast.makeText(MainActivity.this, "Hecho por Jorge Galindo Peña para la asignatura de Laboratorio de Dispositivos Móviles de la universidad Rey Juan Carlos.", Toast.LENGTH_LONG).show();
-                break;
-            default:
-                break;
+            return true;
+        } else if (id == R.id.audio) {
+            // go to help activity
+            Intent audioIntent = new Intent(this, AudioActivity.class);
+            audioIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(audioIntent);
+            finish();
+
+            return true;
+        } else if (id == R.id.about) {
+            Toast.makeText(MainActivity.this, "Hecho por Jorge Galindo Peña para la asignatura de Laboratorio de Dispositivos Móviles de la universidad Rey Juan Carlos.", Toast.LENGTH_LONG).show();
+        } else {
+            return false;
         }
 
         return super.onOptionsItemSelected(item);

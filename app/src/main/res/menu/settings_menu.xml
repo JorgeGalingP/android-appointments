@@ -4,6 +4,9 @@
     <item android:id="@+id/help"
           android:title="@string/settings_option_1"
           app:showAsAction="never"/>
+    <item
+        android:id="@+id/admin"
+        android:title="@string/administrador" />
     <item android:id="@+id/audio"
           android:title="@string/settings_option_2"
           app:showAsAction="never"/>

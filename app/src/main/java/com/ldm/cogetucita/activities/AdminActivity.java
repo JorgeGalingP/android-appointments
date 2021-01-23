@@ -1,28 +1,36 @@
 package com.ldm.cogetucita.activities;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 import com.ldm.cogetucita.R;
+import com.ldm.cogetucita.adapters.AppointmentAdapter;
 import com.ldm.cogetucita.adapters.ProductAdapter;
+import com.ldm.cogetucita.models.Appointment;
 import com.ldm.cogetucita.models.Product;
+import com.ldm.cogetucita.models.State;
+import com.ldm.cogetucita.repositories.AppointmentRepository;
 import com.ldm.cogetucita.repositories.ProductRepository;
 
 import java.util.List;
 
-public class ProductActivity extends AppCompatActivity {
+public class AdminActivity extends AppCompatActivity {
     private List<Product> productList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product);
-        setTitle("Productos");
+        setContentView(R.layout.activity_admin);
+        setTitle("Administración de los productos");
 
         ProgressBar progressBar = findViewById(R.id.progressBar);
         progressBar.setIndeterminate(true);
@@ -45,6 +53,9 @@ public class ProductActivity extends AppCompatActivity {
 
         // set LinearLayoutManager
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                layoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setLayoutManager(layoutManager);
 
         // set Adapter
@@ -57,7 +68,7 @@ public class ProductActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // go to the main activity
-                Intent intent = new Intent(ProductActivity.this, MainActivity.class);
+                Intent intent = new Intent(AdminActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 startActivity(intent);

@@ -33,4 +33,9 @@
     <string name="item_appointment_state">Estado</string>
     <string name="btn_play">Escuchar</string>
     <string name="btn_rec">Grabar</string>
+    <string name="administrador">Administrador</string>
+    <string name="item_product_admin_name">Nombre</string>
+    <string name="item_product_admin_description">Descripcion</string>
+    <string name="item_product_admin_price">Precio</string>
+    <string name="item_product_admin_image">Imagen</string>
 </resources>

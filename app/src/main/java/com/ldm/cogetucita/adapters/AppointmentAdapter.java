@@ -82,7 +82,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
 
         // set TextViews
         TextView textViewId = holder.idTextView;
-        textViewId.setText("ID-" + appointment.getId());
+        textViewId.setText("C-" + appointment.getId());
 
         TextView textViewName = holder.nameTextView;
         textViewName.setText(appointment.getName());
