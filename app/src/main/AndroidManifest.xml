@@ -17,10 +17,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.AdminActivity"></activity>
-        <activity android:name=".activities.AudioActivity"></activity>
-        <activity android:name=".activities.HelpActivity"></activity>
-        <activity android:name=".activities.UpdateActivity"></activity>
+        <activity android:name=".activities.UpdateProductActivity"></activity>
+        <activity android:name=".activities.RegistryProductActivity" />
+        <activity android:name=".activities.AdminActivity" />
+        <activity android:name=".activities.AudioActivity" />
+        <activity android:name=".activities.HelpActivity" />
+        <activity android:name=".activities.UpdateAppointmentActivity" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,8 +30,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.RegistryActivity"></activity>
-        <activity android:name=".activities.ProductActivity"></activity>
+        <activity android:name=".activities.RegistryAppointmentActivity" />
+        <activity android:name=".activities.ProductActivity" />
     </application>
 
 </manifest>

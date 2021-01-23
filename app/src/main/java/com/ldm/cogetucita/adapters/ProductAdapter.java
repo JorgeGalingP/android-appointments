@@ -15,13 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ldm.cogetucita.activities.AdminActivity;
 import com.ldm.cogetucita.activities.ProductActivity;
-import com.ldm.cogetucita.activities.RegistryActivity;
+import com.ldm.cogetucita.activities.RegistryAppointmentActivity;
 import com.ldm.cogetucita.R;
+import com.ldm.cogetucita.activities.RegistryProductActivity;
+import com.ldm.cogetucita.activities.UpdateProductActivity;
 import com.ldm.cogetucita.models.Product;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.ProtocolFamily;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
@@ -74,14 +75,24 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         public void onClick(View view) {
             int position = getAdapterPosition();
 
-            if (position != RecyclerView.NO_POSITION
-                    && this.context instanceof ProductActivity) {
-                Product product = productList.get(position);
+            if (position != RecyclerView.NO_POSITION) {
+                if (this.context instanceof ProductActivity) {
+                    Product product = productList.get(position);
 
-                Intent intent = new Intent(activity, RegistryActivity.class);
-                intent.putExtra("id", product.getId().toString()); // product id parameter
+                    Intent intent = new Intent(activity, RegistryAppointmentActivity.class);
+                    intent.putExtra("id", product.getId().toString()); // product id parameter
 
-                activity.startActivity(intent);
+                    activity.startActivity(intent);
+                }
+
+                if (this.context instanceof AdminActivity) {
+                    Product product = productList.get(position);
+
+                    Intent intent = new Intent(activity, UpdateProductActivity.class);
+                    intent.putExtra("id", product.getId().toString()); // product id parameter
+
+                    activity.startActivity(intent);
+                }
             }
         }
     }

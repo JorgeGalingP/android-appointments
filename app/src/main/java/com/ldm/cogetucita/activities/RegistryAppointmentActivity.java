@@ -14,7 +14,7 @@ import com.ldm.cogetucita.models.Product;
 import com.ldm.cogetucita.repositories.AppointmentRepository;
 import com.ldm.cogetucita.repositories.ProductRepository;
 
-public class RegistryActivity extends AppCompatActivity {
+public class RegistryAppointmentActivity extends AppCompatActivity {
     private EditText nameEditText;
     private EditText surnameEditText;
     private EditText emailEditText;
@@ -69,15 +69,15 @@ public class RegistryActivity extends AppCompatActivity {
                 boolean inserted = appointmentRepository.insertAppointment(product.getId().toString(), name, surname, email, date, "");
 
                 if (inserted) {
-                    Toast.makeText(RegistryActivity.this, R.string.registry_message_sucess, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistryAppointmentActivity.this, R.string.registry_message_sucess, Toast.LENGTH_SHORT).show();
                 } else{
-                    Toast.makeText(RegistryActivity.this, R.string.registry_message_fail, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistryAppointmentActivity.this, R.string.registry_message_fail, Toast.LENGTH_SHORT).show();
                 }
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(RegistryActivity.this, MainActivity.class);
+                        Intent intent = new Intent(RegistryAppointmentActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
                 }, 1500);
@@ -90,7 +90,7 @@ public class RegistryActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // go to the main activity
-                Intent intent = new Intent(RegistryActivity.this, ProductActivity.class);
+                Intent intent = new Intent(RegistryAppointmentActivity.this, ProductActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 startActivity(intent);

@@ -6,11 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.recyclerview.widget.RecyclerView;
 import com.ldm.cogetucita.R;
-import com.ldm.cogetucita.activities.MainActivity;
-import com.ldm.cogetucita.activities.UpdateActivity;
+import com.ldm.cogetucita.activities.UpdateAppointmentActivity;
 import com.ldm.cogetucita.models.Appointment;
 
 import java.util.List;
@@ -55,7 +54,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
                 Appointment appointment = appointmentList.get(position);
 
                 Context context = view.getContext();
-                Intent intent = new Intent(context, UpdateActivity.class);
+                Intent intent = new Intent(context, UpdateAppointmentActivity.class);
 
                 intent.putExtra("id", String.valueOf(appointment.getId())); // id parameter
 

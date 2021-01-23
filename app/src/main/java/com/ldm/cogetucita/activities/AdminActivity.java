@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ldm.cogetucita.R;
 import com.ldm.cogetucita.adapters.AppointmentAdapter;
 import com.ldm.cogetucita.adapters.ProductAdapter;
@@ -61,6 +62,17 @@ public class AdminActivity extends AppCompatActivity {
         // set Adapter
         ProductAdapter productAdapter = new ProductAdapter(this, getProductList());
         recyclerView.setAdapter(productAdapter);
+
+        // set Fab
+        FloatingActionButton fab = findViewById(R.id.addFab);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminActivity.this, RegistryProductActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

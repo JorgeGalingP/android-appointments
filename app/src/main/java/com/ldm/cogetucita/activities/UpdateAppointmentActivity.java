@@ -16,7 +16,7 @@ import com.ldm.cogetucita.models.Appointment;
 import com.ldm.cogetucita.models.State;
 import com.ldm.cogetucita.repositories.AppointmentRepository;
 
-public class UpdateActivity extends AppCompatActivity {
+public class UpdateAppointmentActivity extends AppCompatActivity {
     private EditText nameEditText;
     private EditText surnameEditText;
     private EditText emailEditText;
@@ -24,7 +24,7 @@ public class UpdateActivity extends AppCompatActivity {
     private EditText locationEditText;
     private Spinner stateSpinner;
 
-    private Boolean deleted = null;
+    private boolean deleted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class UpdateActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String id = extras.getString("id");
 
-        setTitle("Actualizar la cita ID-" + id);
+        setTitle("Actualizar la cita C-" + id);
 
         // init Repositories
         final AppointmentRepository appointmentRepository = new AppointmentRepository(this);
@@ -94,17 +94,17 @@ public class UpdateActivity extends AppCompatActivity {
                 boolean updated = appointmentRepository.updateAppointment(String.valueOf(appointment.getId()), name, surname, email, date, location, selectedState);
 
                 if (updated) {
-                    Toast.makeText(UpdateActivity.this, R.string.update_message_sucess, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateAppointmentActivity.this, R.string.update_message_sucess, Toast.LENGTH_SHORT).show();
 
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
+                            Intent intent = new Intent(UpdateAppointmentActivity.this, MainActivity.class);
                             startActivity(intent);
                         }
                     }, 1500);
-                } else{
-                    Toast.makeText(UpdateActivity.this, R.string.update_message_fail, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(UpdateAppointmentActivity.this, R.string.update_message_fail, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -113,7 +113,7 @@ public class UpdateActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(UpdateAppointmentActivity.this);
                 builder
                         .setPositiveButton("Sí, eliminar", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -135,17 +135,17 @@ public class UpdateActivity extends AppCompatActivity {
                     @Override
                     public void onDismiss(DialogInterface dialogInterface) {
                         if (deleted) {
-                            Toast.makeText(UpdateActivity.this, R.string.delete_message_sucess, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdateAppointmentActivity.this, R.string.delete_message_sucess, Toast.LENGTH_SHORT).show();
 
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
+                                    Intent intent = new Intent(UpdateAppointmentActivity.this, MainActivity.class);
                                     startActivity(intent);
                                 }
                             }, 1500);
                         } else {
-                            Toast.makeText(UpdateActivity.this, R.string.delete_message_fail, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdateAppointmentActivity.this, R.string.delete_message_fail, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
