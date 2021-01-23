@@ -2,6 +2,9 @@ package com.ldm.cogetucita.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,9 @@ import com.ldm.cogetucita.activities.ProductActivity;
 import com.ldm.cogetucita.activities.RegistryActivity;
 import com.ldm.cogetucita.R;
 import com.ldm.cogetucita.models.Product;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     private ProductActivity productActivity;
@@ -64,9 +70,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         LayoutInflater layoutInflater = LayoutInflater.from(context);
 
         View productView = layoutInflater.inflate(R.layout.item_product, parent, false);
-        ViewHolder productViewHolder = new ViewHolder(context, productView);
 
-        return productViewHolder;
+        return new ViewHolder(context, productView);
     }
 
     @Override
@@ -77,11 +82,21 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         // set ImageView
         ImageView imageViewImage = holder.imageView;
 
-        int resId = holder.context.getResources().getIdentifier(product.getImage(), "drawable", holder.context.getPackageName());
-        if (resId != 0){
-            imageViewImage.setImageResource(resId);
+        // set AssetManager
+        AssetManager assetManager = holder.context.getAssets();
+        InputStream inputStream = null;
+        try {
+            inputStream = assetManager.open(product.getImage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        else{
+
+        // get Bitmap from product's image
+        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+
+        if (bitmap != null) {
+            imageViewImage.setImageBitmap(bitmap);
+        } else {
             imageViewImage.setImageResource(R.drawable.ic_launcher_background);
         }
 
