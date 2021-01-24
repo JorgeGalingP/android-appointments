@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.ldm.cogetucita.R;
+import com.ldm.cogetucita.adapters.SpinnerImageAdapter;
 import com.ldm.cogetucita.models.Product;
 import com.ldm.cogetucita.models.State;
 import com.ldm.cogetucita.repositories.ProductRepository;
@@ -68,8 +69,9 @@ public class UpdateProductActivity extends AppCompatActivity {
         final List<String> imageList = getImagesFromAssetFolder();
         int selection = imageList.indexOf(product.getImage());
 
-        imageSpinner = findViewById(R.id.stateSpinner);
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, imageList);
+        imageSpinner = findViewById(R.id.imageSpinner);
+        SpinnerImageAdapter spinnerAdapter = new SpinnerImageAdapter(this, R.layout.item_image_spinner_product, imageList);
+        imageSpinner.setAdapter(spinnerAdapter);
         imageSpinner.setAdapter(spinnerAdapter);
         imageSpinner.setSelection(selection);
 
