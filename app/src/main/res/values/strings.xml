@@ -30,6 +30,7 @@
     <string name="update_message_fail">Faltan datos requeridos</string>
     <string name="delete_message_sucess">Eliminado correctamente</string>
     <string name="delete_message_fail">No se ha eliminado</string>
+    <string name="update_images_message_fail">No se han podido cargar las imagenes</string>
     <string name="item_appointment_name">Nombre</string>
     <string name="item_appointment_surname">Apellidos</string>
     <string name="item_appointment_email">Email</string>
