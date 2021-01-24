@@ -2,6 +2,7 @@ package com.ldm.cogetucita.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -20,9 +21,12 @@ import com.ldm.cogetucita.R;
 import com.ldm.cogetucita.activities.UpdateProductActivity;
 import com.ldm.cogetucita.models.Product;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     private Activity activity;
@@ -166,7 +170,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             if (bitmap != null) {
                 imageViewImage.setImageBitmap(bitmap);
             } else {
-                imageViewImage.setImageResource(R.drawable.ic_launcher_background);
+                ContextWrapper wrapper = new ContextWrapper(holder.context.getApplicationContext());
+                File file = wrapper.getDir("Images", MODE_PRIVATE);
+                file = new File(file, product.getImage());
+
+                bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+
+                if (bitmap != null) {
+                    imageViewImage.setImageBitmap(bitmap);
+                } else {
+                    imageViewImage.setImageResource(R.drawable.ic_launcher_background);
+                }
             }
         }
     }

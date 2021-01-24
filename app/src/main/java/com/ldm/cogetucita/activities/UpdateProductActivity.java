@@ -3,13 +3,14 @@ package com.ldm.cogetucita.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -18,11 +19,11 @@ import android.widget.Toast;
 import com.ldm.cogetucita.R;
 import com.ldm.cogetucita.adapters.SpinnerImageAdapter;
 import com.ldm.cogetucita.models.Product;
-import com.ldm.cogetucita.models.State;
 import com.ldm.cogetucita.repositories.ProductRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.*;
 
@@ -165,18 +166,29 @@ public class UpdateProductActivity extends AppCompatActivity {
     }
 
     private List<String> getImagesFromAssetFolder(){
-        List<String> imagesList = new ArrayList<>();
+        List<String> imagesFinalList = new ArrayList<>();
 
         try {
             String regex = "([^\\s]+(\\.(?i)(jpe?g|png|gif|bmp))$)";
             Pattern pattern = Pattern.compile(regex);
-            String[] images = getAssets().list("");
 
-            for (String image : images) {
+            // get images from assets folder
+            String[] imagesAsset = getAssets().list("");
+
+            // get images from "Images" folder
+            ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
+            String[] imagesFolder = wrapper.getDir("Images", MODE_PRIVATE).list();
+
+            // final image's list
+            List<String> imagesList = new ArrayList<>();
+            imagesList.addAll(Arrays.asList(imagesAsset));
+            imagesList.addAll(Arrays.asList(imagesFolder));
+
+            for (String image : imagesList) {
                 Matcher matcher = pattern.matcher(image);
 
                 if (!image.equals("") && matcher.matches()) {
-                    imagesList.add(image);
+                    imagesFinalList.add(image);
                 }
             }
         } catch (IOException e) {
@@ -193,6 +205,6 @@ public class UpdateProductActivity extends AppCompatActivity {
             }, 1500);
         }
 
-        return imagesList;
+        return imagesFinalList;
     }
 }

@@ -2,11 +2,14 @@
     <string name="app_name">CogeTuCita</string>
     <string name="image_content_description">Product</string>
     <string name="settings_option_1">Ayuda</string>
-    <string name="settings_option_2">Cita en audio</string>
-    <string name="settings_option_3">Acerca de</string>
+    <string name="settings_option_2">Administrador</string>
+    <string name="settings_option_3">Cita en audio</string>
+    <string name="settings_option_4">Acerca de</string>
+    <string name="settings_upload_image">Añadir imagen</string>
     <string name="registry">Registrar</string>
     <string name="update">Actualizar</string>
     <string name="delete">Eliminar</string>
+    <string name="download">Descargar</string>
     <string name="registry_name">Añadir nombre…</string>
     <string name="registry_surname">Añadir apellidos…</string>
     <string name="registry_email">Añadir email…</string>
@@ -17,6 +20,9 @@
     <string name="registry_product_description">Añadir descripción…</string>
     <string name="registry_product_price">Añadir precio…</string>
     <string name="registry_product_image">Añadir imagen…</string>
+    <string name="upload_message_sucess">Imagen descargada correctamente</string>
+    <string name="upload_message_fail">La imagen no pudo ser descargada</string>
+    <string name="upload_url">Introduce una url válida…</string>
     <string name="update_name">Actualizar nombre…</string>
     <string name="update_surname">Actualizar apellidos…</string>
     <string name="update_email">Actualizar email…</string>
@@ -41,9 +47,9 @@
     <string name="item_appointment_state">Estado</string>
     <string name="btn_play">Escuchar</string>
     <string name="btn_rec">Grabar</string>
-    <string name="administrador">Administrador</string>
     <string name="item_product_admin_name">Nombre</string>
     <string name="item_product_admin_description">Descripcion</string>
     <string name="item_product_admin_price">Precio</string>
     <string name="item_product_admin_image">Imagen</string>
+    <string name="image_example"><![CDATA[https://i.guim.co.uk/img/media/fe1e34da640c5c56ed16f76ce6f994fa9343d09d/0_174_3408_2046/master/3408.jpg?width=445&quality=45&auto=format&fit=max&dpr=2&s=c4f4d4981ad8e828c7d2402a47ed4f4f]]></string>
 </resources>

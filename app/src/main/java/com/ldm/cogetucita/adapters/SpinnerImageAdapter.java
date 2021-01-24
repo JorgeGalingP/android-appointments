@@ -1,21 +1,25 @@
 package com.ldm.cogetucita.adapters;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.ldm.cogetucita.R;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class SpinnerImageAdapter extends ArrayAdapter<String> {
     private Context context;
@@ -62,7 +66,17 @@ public class SpinnerImageAdapter extends ArrayAdapter<String> {
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
         } else {
-            imageView.setImageResource(R.drawable.ic_launcher_background);
+            ContextWrapper wrapper = new ContextWrapper(this.context.getApplicationContext());
+            File file = wrapper.getDir("Images", MODE_PRIVATE);
+            file = new File(file, imageName);
+
+            bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+
+            if (bitmap != null) {
+                imageView.setImageBitmap(bitmap);
+            } else {
+                imageView.setImageResource(R.drawable.ic_launcher_background);
+            }
         }
 
         return row;

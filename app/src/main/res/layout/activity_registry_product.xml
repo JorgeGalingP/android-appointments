@@ -56,23 +56,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextProductDescription"
         app:layout_constraintVertical_bias="0.0"/>
-    <EditText
+
+    <Spinner
+        android:id="@+id/imageSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textNoSuggestions"
-        android:maxLines="1"
+        android:layout_weight="2"
         android:ems="10"
-        android:id="@+id/editTextProductImage"
-        tools:layout_editor_absoluteX="0dp"
-        android:autofillHints=""
         android:hint="@string/registry_product_image"
         android:singleLine="true"
+        android:textSize="16sp"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextProductPrice"
-        app:layout_constraintVertical_bias="0.0"/>
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="16dp" />
+
     <Button
         android:id="@+id/registryProductButton"
         android:text="@string/registry"
@@ -81,7 +82,8 @@
         android:layout_margin="4dp"
         tools:layout_editor_absoluteX="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextProductImage"
-        app:layout_constraintVertical_bias="0.28" app:backgroundTint="@color/colorGray"
+        app:layout_constraintTop_toBottomOf="@+id/imageSpinner"
+        app:layout_constraintVertical_bias="0.28"
+        app:backgroundTint="@color/colorGray"
         android:textColor="#000000"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
