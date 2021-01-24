@@ -17,7 +17,6 @@ import com.ldm.cogetucita.activities.AdminActivity;
 import com.ldm.cogetucita.activities.ProductActivity;
 import com.ldm.cogetucita.activities.RegistryAppointmentActivity;
 import com.ldm.cogetucita.R;
-import com.ldm.cogetucita.activities.RegistryProductActivity;
 import com.ldm.cogetucita.activities.UpdateProductActivity;
 import com.ldm.cogetucita.models.Product;
 
@@ -43,7 +42,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         public TextView nameAdminTextView;
         public TextView descriptionAdminTextView;
         public TextView priceTextView;
-        public TextView imageTextView;
+        public ImageView imageViewAdmin;
         private Context context;
 
         public ViewHolder(Context context,
@@ -61,7 +60,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 nameAdminTextView = itemView.findViewById(R.id.nameTextView);
                 descriptionAdminTextView = itemView.findViewById(R.id.descriptionTextView);
                 priceTextView = itemView.findViewById(R.id.priceTextView);
-                imageTextView = itemView.findViewById(R.id.imageTextView);
+                imageViewAdmin = itemView.findViewById(R.id.imageViewAdmin);
             }
 
             // store the context
@@ -120,6 +119,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         // involves populating data into the item through holder
         Product product = productList.get(position);
 
+        ImageView imageViewImage = null;
+
         if (holder.context instanceof ProductActivity) {
             // set TextViews
             TextView textViewName = holder.nameTextView;
@@ -128,8 +129,28 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             textViewDescription.setText(product.getDescription());
 
             // set ImageView
-            ImageView imageViewImage = holder.imageView;
+            imageViewImage = holder.imageView;
+        }
 
+        if (holder.context instanceof AdminActivity) {
+            // set TextViews
+            TextView textViewId = holder.idTextView;
+            textViewId.setText("P-" + product.getId());
+
+            TextView textViewName = holder.nameAdminTextView;
+            textViewName.setText(product.getName());
+
+            TextView textViewDescription = holder.descriptionAdminTextView;
+            textViewDescription.setText(product.getDescription());
+
+            TextView textViewPrice = holder.priceTextView;
+            textViewPrice.setText(product.getPrice() + " euros");
+
+            // set ImageView
+            imageViewImage = holder.imageViewAdmin;
+        }
+
+        if (imageViewImage != null) {
             // set AssetManager
             AssetManager assetManager = holder.context.getAssets();
             InputStream inputStream = null;
@@ -147,24 +168,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             } else {
                 imageViewImage.setImageResource(R.drawable.ic_launcher_background);
             }
-        }
-
-        if (holder.context instanceof AdminActivity) {
-            // set TextViews
-            TextView textViewId = holder.idTextView;
-            textViewId.setText("P-" + product.getId());
-
-            TextView textViewName = holder.nameAdminTextView;
-            textViewName.setText(product.getName());
-
-            TextView textViewDescription = holder.descriptionAdminTextView;
-            textViewDescription.setText(product.getDescription());
-
-            TextView textViewPrice = holder.priceTextView;
-            textViewPrice.setText(product.getPrice() + " euros");
-
-            TextView textViewImage = holder.imageTextView;
-            textViewImage.setText(product.getImage());
         }
     }
 

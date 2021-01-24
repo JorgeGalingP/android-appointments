@@ -1,11 +1,9 @@
 package com.ldm.cogetucita.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,12 +12,8 @@ import android.widget.ProgressBar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ldm.cogetucita.R;
-import com.ldm.cogetucita.adapters.AppointmentAdapter;
 import com.ldm.cogetucita.adapters.ProductAdapter;
-import com.ldm.cogetucita.models.Appointment;
 import com.ldm.cogetucita.models.Product;
-import com.ldm.cogetucita.models.State;
-import com.ldm.cogetucita.repositories.AppointmentRepository;
 import com.ldm.cogetucita.repositories.ProductRepository;
 
 import java.util.List;
@@ -54,9 +48,6 @@ public class AdminActivity extends AppCompatActivity {
 
         // set LinearLayoutManager
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                layoutManager.getOrientation());
-        recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setLayoutManager(layoutManager);
 
         // set Adapter
