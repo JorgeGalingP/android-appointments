@@ -2,7 +2,6 @@ package com.ldm.cogetucita.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,20 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ldm.cogetucita.R;
 import com.ldm.cogetucita.adapters.SpinnerImageAdapter;
-import com.ldm.cogetucita.models.Product;
 import com.ldm.cogetucita.repositories.ProductRepository;
+import com.ldm.cogetucita.utils.ImageUtils;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class RegistryProductActivity extends AppCompatActivity {
     private EditText nameEditText;
@@ -46,13 +39,16 @@ public class RegistryProductActivity extends AppCompatActivity {
         // init Repositories
         final ProductRepository productRepository = new ProductRepository(this);
 
+        // init Utils
+        ImageUtils imageUtils = new ImageUtils(this);
+
         // set Views
         nameEditText = findViewById(R.id.editTextProductName);
         descriptionEditText = findViewById(R.id.editTextProductDescription);
         priceEditText = findViewById(R.id.editTextProductPrice);
 
         // set image Spinner
-        final List<String> imageList = getImagesFromAssetFolder();
+        final List<String> imageList = imageUtils.getImagesFromAssetFolder(AdminActivity.class);
         int selection = imageList.indexOf(imageList.get(0));
 
         imageSpinner = findViewById(R.id.imageSpinner);
@@ -105,48 +101,5 @@ public class RegistryProductActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private List<String> getImagesFromAssetFolder(){
-        List<String> imagesFinalList = new ArrayList<>();
-
-        try {
-            String regex = "([^\\s]+(\\.(?i)(jpe?g|png|gif|bmp))$)";
-            Pattern pattern = Pattern.compile(regex);
-
-            // get images from assets folder
-            String[] imagesAsset = getAssets().list("");
-
-            // get images from "Images" folder
-            ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
-            String[] imagesFolder = wrapper.getDir("Images", MODE_PRIVATE).list();
-
-            // final image's list
-            List<String> imagesList = new ArrayList<>();
-            imagesList.addAll(Arrays.asList(imagesAsset));
-            imagesList.addAll(Arrays.asList(imagesFolder));
-
-            for (String image : imagesList) {
-                Matcher matcher = pattern.matcher(image);
-
-                if (!image.equals("") && matcher.matches()) {
-                    imagesFinalList.add(image);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-
-            Toast.makeText(this, R.string.update_images_message_fail, Toast.LENGTH_SHORT).show();
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(RegistryProductActivity.this, AdminActivity.class);
-                    startActivity(intent);
-                }
-            }, 1500);
-        }
-
-        return imagesFinalList;
     }
 }

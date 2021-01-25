@@ -3,14 +3,12 @@ package com.ldm.cogetucita.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -19,18 +17,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ldm.cogetucita.R;
+import com.ldm.cogetucita.utils.ImageUtils;
 
 import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.Charset;
-import java.util.Random;
 
 public class ImageActivity extends AppCompatActivity {
 
@@ -69,10 +62,12 @@ public class ImageActivity extends AppCompatActivity {
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String urlDownload = editText.getText().toString();
+                // init Utils
+                ImageUtils imageUtils = new ImageUtils(getApplicationContext());
 
+                String urlDownload = editText.getText().toString();
                 task = new DownloadTask()
-                        .execute(stringToURL(urlDownload));
+                        .execute(imageUtils.stringToURL(urlDownload));
             }
         });
     }
@@ -105,33 +100,31 @@ public class ImageActivity extends AppCompatActivity {
         protected Bitmap doInBackground(URL...urls){
             URL url = urls[0];
             HttpURLConnection connection = null;
-            Bitmap bitmap = null;
 
             try {
                 // Initialize a new http url connection
                 connection = (HttpURLConnection) url.openConnection();
                 connection.connect();
 
-                // Get the input stream from http url connection
+                // get the input stream from http url connection
                 InputStream inputStream = connection.getInputStream();
 
-                // Initialize a new BufferedInputStream from InputStream
+                // initialize a new BufferedInputStream from InputStream
                 BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
 
-                // Convert BufferedInputStream to Bitmap object and return
-                bitmap = BitmapFactory.decodeStream(bufferedInputStream);
-                return bitmap;
+                // convert BufferedInputStream to Bitmap object and return
+                return BitmapFactory.decodeStream(bufferedInputStream);
 
             } catch (IOException e) {
                 e.printStackTrace();
 
                 Toast.makeText(ImageActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             } finally {
-                // Disconnect the http url connection
+                // disconnect the http url connection
                 connection.disconnect();
             }
 
-            return bitmap;
+            return null;
         }
 
         protected void onPostExecute(Bitmap result){
@@ -139,8 +132,11 @@ public class ImageActivity extends AppCompatActivity {
             progressDialog.dismiss();
 
             if (result != null) {
+                // init Utils
+                ImageUtils imageUtils = new ImageUtils(getApplicationContext());
+
                 // Save bitmap to internal storage
-                Uri imageInternalUri = saveImageToInternalStorage(result);
+                Uri imageInternalUri = imageUtils.saveImageToInternalStorage(result);
 
                 // Set the ImageView image from internal storage
                 imageView.setImageURI(imageInternalUri);
@@ -151,58 +147,5 @@ public class ImageActivity extends AppCompatActivity {
                 Toast.makeText(ImageActivity.this, R.string.upload_message_fail, Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-    protected URL stringToURL(String urlString){
-        try {
-            return new URL(urlString);
-        } catch(MalformedURLException e){
-            e.printStackTrace();
-
-            Toast.makeText(ImageActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-        return null;
-    }
-
-    protected Uri saveImageToInternalStorage(Bitmap bitmap) {
-        // Generate unique name
-        byte[] array = new byte[6];
-        new Random().nextBytes(array);
-        String generatedString = new String(array, Charset.forName("UTF-8"));
-
-        // Initialize ContextWrapper
-        ContextWrapper wrapper = new ContextWrapper(getApplicationContext());
-
-        // Initializing a new file
-        // The bellow line return a directory in internal storage
-        File file = wrapper.getDir("Images", MODE_PRIVATE);
-
-        // Create a file to save the image
-        file = new File(file, generatedString + ".jpg");
-
-        try {
-            // Initialize a new OutputStream
-            OutputStream stream = null;
-
-            // If the output file exists, it can be replaced or appended to it
-            stream = new FileOutputStream(file);
-
-            // Compress the bitmap
-            bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream);
-
-            // Flushes the stream
-            stream.flush();
-
-            // Closes the stream
-            stream.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
-            Toast.makeText(ImageActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-
-        // Parse the gallery image url to uri and return
-        return Uri.parse(file.getAbsolutePath());
     }
 }
